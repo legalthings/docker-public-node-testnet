@@ -14,14 +14,8 @@ from shutil import copyfile
 from pyblake2 import blake2b
 from hashlib import sha256
 
-network_names = ['MAINNET', 'TESTNET']
-
-NETWORK = os.environ.get('LTO_NETWORK')
-
-
 def generate_password(size=12, chars=string.ascii_letters + string.digits):
     return ''.join(random.choice(chars) for i in range(size))
-
 
 def nested_set(dic, keys, value):
     for key in keys[:-1]:
@@ -70,15 +64,9 @@ def secureHash(message):
     return base58.b58encode(sha256(h.digest()).digest())
 
 if __name__ == "__main__":
-    if NETWORK is None or NETWORK not in network_names:
-        NETWORK = 'MAINNET'
-
     create_configs_dir()
 
-    if NETWORK == 'MAINNET':
-        copyfile('/lto-node/lto-mainnet.conf', '/lto/configs/lto-config.conf')
-    elif NETWORK == 'TESTNET':
-        copyfile('/lto-node/lto-testnet.conf', '/lto/configs/lto-config.conf')
+    copyfile('/lto-node/lto-testnet.conf', '/lto/configs/lto-config.conf')
 
     api_key = os.environ.get('LTO_API_KEY', 'lt1secretapikey!')
     api_key_hash = secureHash(api_key)

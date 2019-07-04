@@ -1,4 +1,4 @@
-# LTO Public Node in Docker
+# LTO Public Node in Docker testnet only
 
 ## Running the image
 
@@ -7,14 +7,9 @@ The simplest way to run a container:
 docker run -it legalthings/public-node
 ```
 
-**For MAINNET:**
+**With extra options:**
 ```
-docker run -p 6869:6869 -e LTO_HEAP_SIZE=2g -e LTO_ENABLE_REST_API -v YOUR_LOCAL_PATH_HERE:/lto legalthings/public-node    
-``` 
-
-**For TESTNET:**
-```
-docker run -p 6869:6869 -e LTO_NETWORK=TESTNET -e LTO_HEAP_SIZE=2g -v YOUR_LOCAL_PATH_HERE:/lto legalthings/public-node    
+docker run -p 6869:6869 -e LTO_HEAP_SIZE=2g -v YOUR_LOCAL_PATH_HERE:/lto legalthings/public-node    
 ``` 
 
 **You can run container with predefined environment variables:**
